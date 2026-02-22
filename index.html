@@ -48,9 +48,127 @@
         .thoranam-border {
             background-image: repeating-linear-gradient(45deg, #d41132 0, #d41132 2px, transparent 2px, transparent 10px);
         }
+        .flower-overlay {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 40;
+        }
+        .flower-petal {
+            position: absolute;
+            top: -12vh;
+            border-radius: 9999px;
+            opacity: 0.9;
+            animation-name: petalFall;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+            will-change: transform;
+        }
+        @keyframes petalFall {
+            0% {
+                transform: translate3d(0, 0, 0) rotate(0deg);
+            }
+            100% {
+                transform: translate3d(var(--drift, 0px), 115vh, 0) rotate(480deg);
+            }
+        }
+        .portrait-canvas {
+            width: 100%;
+            height: 100%;
+            border-radius: 9999px;
+            overflow: hidden;
+            position: relative;
+            background: radial-gradient(circle at 30% 25%, #fff8ea 0%, #f8ebcf 48%, #f2dfb3 100%);
+            box-shadow: inset 0 0 0 1px rgba(212, 175, 55, 0.2), inset 0 20px 40px rgba(255, 255, 255, 0.2);
+        }
+        .portrait-canvas::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image: repeating-linear-gradient(35deg, rgba(255, 255, 255, 0.08) 0, rgba(255, 255, 255, 0.08) 2px, rgba(212, 175, 55, 0.05) 2px, rgba(212, 175, 55, 0.05) 4px);
+            mix-blend-mode: multiply;
+            opacity: 0.55;
+            pointer-events: none;
+        }
+        .portrait-svg {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            z-index: 1;
+        }
+        .portrait-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: relative;
+            z-index: 1;
+        }
+        .couple-medallion {
+            width: 100%;
+            height: 100%;
+            border-radius: 9999px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle at 30% 28%, #fff8e8 0%, #f3e3bf 52%, #e7cd97 100%);
+            box-shadow: inset 0 0 0 1px rgba(212, 175, 55, 0.24), inset 0 18px 40px rgba(255, 255, 255, 0.24);
+            overflow: hidden;
+        }
+        .couple-medallion::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image: repeating-linear-gradient(30deg, rgba(255, 255, 255, 0.08) 0, rgba(255, 255, 255, 0.08) 2px, rgba(212, 175, 55, 0.04) 2px, rgba(212, 175, 55, 0.04) 4px);
+            opacity: 0.7;
+            pointer-events: none;
+        }
+        .couple-medallion.bride {
+            background: radial-gradient(circle at 30% 28%, #fff5ef 0%, #f5d7cf 52%, #e7b4aa 100%);
+        }
+        .couple-ring {
+            width: 72%;
+            height: 72%;
+            border-radius: 9999px;
+            border: 2px solid rgba(212, 175, 55, 0.55);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 1;
+            background: rgba(255, 255, 255, 0.28);
+            box-shadow: 0 10px 20px rgba(120, 84, 20, 0.12);
+        }
+        .couple-symbol {
+            font-size: clamp(2.6rem, 5.2vw, 3.2rem);
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            color: #b08a2c;
+            opacity: 0.9;
+            line-height: 1;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transform: translateY(-1px);
+        }
+        .couple-medallion.bride .couple-symbol {
+            color: #b14c4a;
+        }
+        @media (max-width: 640px) {
+            .couple-ring {
+                width: 70%;
+                height: 70%;
+            }
+            .couple-symbol {
+                letter-spacing: 0.02em;
+                transform: translateY(-0.5px);
+            }
+        }
     </style>
 </head>
 <body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display">
+<div aria-hidden="true" class="flower-overlay" id="flowerOverlay"></div>
 <!-- Top Navigation -->
 <header class="fixed top-0 w-full z-50 bg-background-light/90 backdrop-blur-md border-b border-primary/10 px-6 py-4 flex items-center justify-between">
 <div class="flex items-center gap-2 text-primary">
@@ -119,7 +237,11 @@
 <div class="text-center group">
 <div class="relative mb-6">
 <div class="w-64 h-64 rounded-full border-4 border-gold p-2 mx-auto flex items-center justify-center bg-gold/10">
-<span class="material-symbols-outlined text-gold text-[120px]">person</span>
+<div class="couple-medallion" aria-label="Elegant groom medallion">
+<div class="couple-ring">
+<span class="couple-symbol">M</span>
+</div>
+</div>
 </div>
 </div>
 <h3 class="text-primary text-3xl font-bold mb-2">Maniteja</h3>
@@ -136,7 +258,11 @@
 <div class="text-center group">
 <div class="relative mb-6">
 <div class="w-64 h-64 rounded-full border-4 border-gold p-2 mx-auto flex items-center justify-center bg-gold/10">
-<span class="material-symbols-outlined text-gold text-[120px]">person</span>
+<div class="couple-medallion bride" aria-label="Elegant bride medallion">
+<div class="couple-ring">
+<span class="couple-symbol">A</span>
+</div>
+</div>
 </div>
 </div>
 <h3 class="text-primary text-3xl font-bold mb-2">Akhila</h3>
@@ -273,6 +399,41 @@ message.textContent = 'Thank you for joining our celebration! We\'re thrilled to
 modal.classList.remove('hidden');
 setTimeout(closeThankYou, 3000);
 }
+
+(function startFlowerEffect() {
+const overlay = document.getElementById('flowerOverlay');
+if (!overlay) {
+return;
+}
+
+const petalColors = ['#f9e29d', '#d4af37', '#fce7f3', '#fecdd3'];
+const petalCount = 38;
+
+for (let i = 0; i < petalCount; i++) {
+const petal = document.createElement('span');
+petal.className = 'flower-petal';
+
+const width = Math.floor(Math.random() * 10) + 9;
+const height = Math.floor(Math.random() * 8) + 7;
+const left = Math.random() * 100;
+const duration = Math.random() * 8 + 10;
+const delay = Math.random() * -duration;
+const drift = (Math.random() * 220 - 110).toFixed(1);
+const opacity = (Math.random() * 0.45 + 0.45).toFixed(2);
+
+petal.style.width = `${width}px`;
+petal.style.height = `${height}px`;
+petal.style.left = `${left}%`;
+petal.style.background = petalColors[i % petalColors.length];
+petal.style.animationDuration = `${duration}s`;
+petal.style.animationDelay = `${delay}s`;
+petal.style.setProperty('--drift', `${drift}px`);
+petal.style.opacity = opacity;
+petal.style.transform = `rotate(${Math.random() * 360}deg)`;
+
+overlay.appendChild(petal);
+}
+})();
 </script>
 </div>
 </div>
