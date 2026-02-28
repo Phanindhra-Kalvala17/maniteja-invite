@@ -1,454 +1,781 @@
 <!DOCTYPE html>
+<html lang="te" class="scroll-smooth">
 
-<html lang="te"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Kalvala's Wedding Invitation</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Telugu:wght@400;700&amp;family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Kalvala's Royal Wedding Invitation</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Wedding Invitation of Maniteja & Akhila">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Serif+Telugu:wght@400;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+        rel="stylesheet">
+
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+
+    <script id="tailwind-config">
         tailwind.config = {
-            darkMode: "class",
             theme: {
                 extend: {
                     colors: {
-                        "primary": "#d41132",
-                        "gold": "#d4af37",
-                        "gold-light": "#f9e29d",
-                        "background-light": "#fdfaf6",
-                        "background-dark": "#221013",
+                        brand: {
+                            maroon: '#5c0016',    /* Deep Royal Maroon */
+                            gold: '#d4af37',      /* Metallic Gold */
+                            goldlight: '#f3e5ab', /* Light Gold/Champagne */
+                            cream: '#fdfbf7',     /* Soft Ivory Background */
+                            charcoal: '#1f2937',  /* Dark text */
+                        }
                     },
                     fontFamily: {
-                        "display": ["Noto Serif", "Noto Serif Telugu", "serif"]
+                        heading: ['Playfair Display', 'serif'],
+                        telugu: ['Noto Serif Telugu', 'serif'],
+                        body: ['Montserrat', 'sans-serif'],
+                        cinzel: ['Cinzel', 'serif']
                     },
-                    borderRadius: {
-                        "DEFAULT": "0.25rem",
-                        "lg": "0.5rem",
-                        "xl": "0.75rem",
-                        "full": "9999px"
+                    backgroundImage: {
+                        'hero-pattern': "url('assets/hero-bg.png')",
+                        'cream-pattern': "url('assets/cream-bg.png')",
                     },
+                    boxShadow: {
+                        'gold': '0 4px 30px rgba(212, 175, 55, 0.15)',
+                        'gold-lg': '0 10px 40px rgba(212, 175, 55, 0.25)',
+                    }
                 },
             },
         }
     </script>
-<style>
+    <style>
         body {
-            font-family: 'Noto Serif', 'Noto Serif Telugu', serif;
+            font-family: 'Montserrat', sans-serif;
+            background-color: #fdfbf7;
+            background-image: url('assets/cream-bg.png');
+            background-blend-mode: multiply;
+            color: #1f2937;
+            overflow-x: hidden;
         }
-        .pattern-bg {
-            background-image: radial-gradient(#d41132 0.5px, transparent 0.5px), radial-gradient(#d41132 0.5px, #fdfaf6 0.5px);
-            background-size: 20px 20px;
-            background-position: 0 0, 10px 10px;
-            opacity: 0.05;
+
+        h1,
+        h2,
+        h3,
+        .font-heading {
+            font-family: 'Playfair Display', serif;
         }
-        .mandala-rotate {
-            animation: none; /* Requested no animations */
+
+        .font-telugu {
+            font-family: 'Noto Serif Telugu', serif;
         }
-        .thoranam-border {
-            background-image: repeating-linear-gradient(45deg, #d41132 0, #d41132 2px, transparent 2px, transparent 10px);
+
+        /* Smooth Reveal Animation Classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 1s cubic-bezier(0.5, 0, 0, 1);
         }
-        .flower-overlay {
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            overflow: hidden;
-            z-index: 40;
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
         }
-        .flower-petal {
-            position: absolute;
-            top: -12vh;
-            border-radius: 9999px;
-            opacity: 0.9;
-            animation-name: petalFall;
-            animation-timing-function: linear;
-            animation-iteration-count: infinite;
-            will-change: transform;
+
+        .reveal-delay-1 {
+            transition-delay: 0.2s;
         }
-        @keyframes petalFall {
+
+        .reveal-delay-2 {
+            transition-delay: 0.4s;
+        }
+
+        .reveal-delay-3 {
+            transition-delay: 0.6s;
+        }
+
+        /* Glassmorphism Navigation */
+        .nav-glass {
+            background: rgba(253, 251, 247, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .nav-scrolled {
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+            padding-top: 0.75rem;
+            padding-bottom: 0.75rem;
+        }
+
+        /* Hero Background Overlay */
+        .hero-overlay {
+            background: linear-gradient(to bottom, rgba(92, 0, 22, 0.85), rgba(92, 0, 22, 0.95));
+        }
+
+        /* Golden Text Gradient */
+        .text-gradient-gold {
+            background: linear-gradient(to right, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% auto;
+            animation: shine 4s linear infinite;
+        }
+
+        @keyframes shine {
+            to {
+                background-position: 200% center;
+            }
+        }
+
+        /* Floating Animation */
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
             0% {
-                transform: translate3d(0, 0, 0) rotate(0deg);
+                transform: translateY(0px);
             }
+
+            50% {
+                transform: translateY(-15px);
+            }
+
             100% {
-                transform: translate3d(var(--drift, 0px), 115vh, 0) rotate(480deg);
+                transform: translateY(0px);
             }
         }
-        .portrait-canvas {
-            width: 100%;
-            height: 100%;
-            border-radius: 9999px;
-            overflow: hidden;
+
+        /* Couple Card Hover Effect */
+        .couple-card {
+            transition: all 0.5s ease;
             position: relative;
-            background: radial-gradient(circle at 30% 25%, #fff8ea 0%, #f8ebcf 48%, #f2dfb3 100%);
-            box-shadow: inset 0 0 0 1px rgba(212, 175, 55, 0.2), inset 0 20px 40px rgba(255, 255, 255, 0.2);
         }
-        .portrait-canvas::before {
-            content: "";
+
+        .couple-card::before {
+            content: '';
             position: absolute;
             inset: 0;
-            background-image: repeating-linear-gradient(35deg, rgba(255, 255, 255, 0.08) 0, rgba(255, 255, 255, 0.08) 2px, rgba(212, 175, 55, 0.05) 2px, rgba(212, 175, 55, 0.05) 4px);
-            mix-blend-mode: multiply;
-            opacity: 0.55;
-            pointer-events: none;
-        }
-        .portrait-svg {
-            width: 100%;
-            height: 100%;
-            position: relative;
-            z-index: 1;
-        }
-        .portrait-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            position: relative;
-            z-index: 1;
-        }
-        .couple-medallion {
-            width: 100%;
-            height: 100%;
             border-radius: 9999px;
+            padding: 3px;
+            background: linear-gradient(45deg, #d4af37, transparent, #b38728);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0.5;
+            transition: opacity 0.5s ease;
+        }
+
+        .couple-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.2);
+        }
+
+        .couple-card:hover::before {
+            opacity: 1;
+        }
+
+        /* Mandala Spin */
+        .spin-slow {
+            animation: spin 20s linear infinite;
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Custom Button */
+        .btn-gold {
+            background: linear-gradient(135deg, #bf953f, #d4af37, #aa771c);
+            color: #5c0016;
+            transition: all 0.3s ease;
             position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: radial-gradient(circle at 30% 28%, #fff8e8 0%, #f3e3bf 52%, #e7cd97 100%);
-            box-shadow: inset 0 0 0 1px rgba(212, 175, 55, 0.24), inset 0 18px 40px rgba(255, 255, 255, 0.24);
             overflow: hidden;
-        }
-        .couple-medallion::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background-image: repeating-linear-gradient(30deg, rgba(255, 255, 255, 0.08) 0, rgba(255, 255, 255, 0.08) 2px, rgba(212, 175, 55, 0.04) 2px, rgba(212, 175, 55, 0.04) 4px);
-            opacity: 0.7;
-            pointer-events: none;
-        }
-        .couple-medallion.bride {
-            background: radial-gradient(circle at 30% 28%, #fff5ef 0%, #f5d7cf 52%, #e7b4aa 100%);
-        }
-        .couple-ring {
-            width: 72%;
-            height: 72%;
-            border-radius: 9999px;
-            border: 2px solid rgba(212, 175, 55, 0.55);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
             z-index: 1;
-            background: rgba(255, 255, 255, 0.28);
-            box-shadow: 0 10px 20px rgba(120, 84, 20, 0.12);
         }
-        .couple-symbol {
-            font-size: clamp(2.6rem, 5.2vw, 3.2rem);
-            font-weight: 700;
-            letter-spacing: 0.04em;
-            color: #b08a2c;
-            opacity: 0.9;
-            line-height: 1;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            transform: translateY(-1px);
+
+        .btn-gold::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #aa771c, #bf953f, #d4af37);
+            z-index: -2;
         }
-        .couple-medallion.bride .couple-symbol {
-            color: #b14c4a;
+
+        .btn-gold::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            z-index: -1;
         }
-        @media (max-width: 640px) {
-            .couple-ring {
-                width: 70%;
-                height: 70%;
-            }
-            .couple-symbol {
-                letter-spacing: 0.02em;
-                transform: translateY(-0.5px);
-            }
+
+        .btn-gold:hover::before {
+            width: 100%;
+        }
+
+        .btn-maroon {
+            background-color: #5c0016;
+            color: #fdfbf7;
+            border: 1px solid #d4af37;
+            transition: all 0.3s ease;
+        }
+
+        .btn-maroon:hover {
+            background-color: #fdfbf7;
+            color: #5c0016;
+        }
+
+        /* Section Dividers */
+        .divider {
+            height: 2px;
+            background: linear-gradient(to right, transparent, rgba(212, 175, 55, 0.5), transparent);
+            margin: 2rem auto;
+            width: 60%;
         }
     </style>
 </head>
-<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display">
-<div aria-hidden="true" class="flower-overlay" id="flowerOverlay"></div>
-<!-- Top Navigation -->
-<header class="fixed top-0 w-full z-50 bg-background-light/90 backdrop-blur-md border-b border-primary/10 px-6 py-4 flex items-center justify-between">
-<div class="flex items-center gap-2 text-primary">
-<span class="material-symbols-outlined text-3xl">temple_hindu</span>
-<h1 class="text-xl font-bold tracking-tight">కల్వల వారి కల్యాణ మహోత్సవ ఆహ్వానం</h1>
-</div>
-<nav class="hidden md:flex gap-8 text-sm font-semibold uppercase tracking-widest text-primary/80">
-<a class="hover:text-primary transition-colors" href="#muhurtham">Muhurtham</a>
-<a class="hover:text-primary transition-colors" href="#couple">The Couple</a>
-<a class="hover:text-primary transition-colors" href="#venue">Venue</a>
-<a class="hover:text-primary transition-colors" href="#rsvp">RSVP</a>
-</nav>
-<button onclick="showJoinThankYou()" class="bg-primary text-white px-6 py-2 rounded-lg font-bold hover:bg-primary/90 transition-all shadow-lg shadow-primary/20">
-            Join Celebration
+
+<body class="antialiased selection:bg-brand-gold selection:text-brand-maroon">
+
+    <!-- Sticky Navigation -->
+    <header id="navbar"
+        class="fixed top-0 w-full z-50 nav-glass px-6 py-5 flex items-center justify-between transition-all duration-300">
+        <div class="flex items-center gap-3">
+            <span class="material-symbols-outlined text-brand-gold text-3xl">temple_hindu</span>
+            <h1 class="font-telugu text-lg md:text-xl font-bold text-brand-maroon tracking-wide">కల్వల వారి కల్యాణ
+                మహోత్సవము</h1>
+        </div>
+
+        <!-- Desktop Nav -->
+        <nav class="hidden md:flex gap-8 text-sm font-semibold uppercase tracking-widest text-brand-charcoal">
+            <a class="hover:text-brand-gold transition-colors duration-300" href="#couple">The Couple</a>
+            <a class="hover:text-brand-gold transition-colors duration-300" href="#muhurtham">Muhurtham</a>
+            <a class="hover:text-brand-gold transition-colors duration-300" href="#venue">Venue</a>
+            <a class="hover:text-brand-gold transition-colors duration-300" href="#rsvp">RSVP</a>
+        </nav>
+
+        <a href="#rsvp"
+            class="hidden md:inline-flex btn-gold px-6 py-2.5 rounded-full font-bold shadow-gold text-sm uppercase tracking-wider">
+            Join Us
+        </a>
+
+        <!-- Mobile Menu Button -->
+        <button class="md:hidden text-brand-maroon focus:outline-none" aria-label="Toggle Menu"
+            onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+            <span class="material-symbols-outlined text-3xl">menu</span>
         </button>
-</header>
-<main class="pt-20">
-<!-- Hero Section: Temple Gateway -->
-<section class="relative min-h-[90vh] flex flex-col items-center justify-center overflow-hidden bg-primary px-4">
-<div class="absolute inset-0 opacity-20" data-alt="Ornate golden temple architecture and patterns" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDp97jWyNiL3bg4R3DCUvb0EykFEMdUOFjWedaa7oDcy37IWZQfFkU1AiVHHtUGeDjJgXXhMa9ogYx-kxXpYT2-Xs_OGEynpaE5W9nvVWzL8UGH45oxiiigz2XvMjilMDWSVhSt_kSEahRL9W_8MnMbaaPAByx4sqIt4k6_GddO_-cOYoSi_Z8EIyQV2-qoMGViVK_sSTrHdf6wsdMKHs0L-RW-HyswIuPJM2YE9ktnmrpnt3XUF3w-7RjR5pDaSYYoW3FACArUhB12'); background-size: cover; background-position: center;"></div>
-<!-- Maamidi Thoranam Decorative Header -->
-<div class="absolute top-0 left-0 w-full h-16 flex justify-around items-start opacity-80 pointer-events-none">
-<!-- Repeating mango leaf motifs -->
-<div class="text-gold-light opacity-50"><span class="material-symbols-outlined text-6xl">spa</span></div>
-<div class="text-gold-light opacity-50"><span class="material-symbols-outlined text-6xl">spa</span></div>
-<div class="text-gold-light opacity-50"><span class="material-symbols-outlined text-6xl">spa</span></div>
-<div class="text-gold-light opacity-50 hidden md:block"><span class="material-symbols-outlined text-6xl">spa</span></div>
-<div class="text-gold-light opacity-50 hidden md:block"><span class="material-symbols-outlined text-6xl">spa</span></div>
-<div class="text-gold-light opacity-50 hidden md:block"><span class="material-symbols-outlined text-6xl">spa</span></div>
-</div>
-<div class="relative z-10 text-center max-w-4xl">
-<div class="mb-6 inline-block">
-<span class="material-symbols-outlined text-gold text-7xl">celebration</span>
-</div>
-<h2 class="text-gold-light text-2xl md:text-3xl mb-4 font-normal italic">Sreerastu Shubhamastu</h2>
-<h1 class="text-white text-5xl md:text-8xl font-bold mb-8 leading-tight">
+    </header>
+
+    <!-- Mobile Menu dropdown -->
+    <div id="mobile-menu"
+        class="hidden fixed top-[72px] left-0 w-full bg-brand-cream/95 backdrop-blur-md border-b border-brand-gold/20 z-40 md:hidden flex-col shadow-lg">
+        <a class="p-4 border-b border-brand-gold/10 text-center font-semibold text-brand-maroon uppercase text-sm tracking-widest"
+            href="#couple" onclick="document.getElementById('mobile-menu').classList.add('hidden')">The Couple</a>
+        <a class="p-4 border-b border-brand-gold/10 text-center font-semibold text-brand-maroon uppercase text-sm tracking-widest"
+            href="#muhurtham" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Muhurtham</a>
+        <a class="p-4 border-b border-brand-gold/10 text-center font-semibold text-brand-maroon uppercase text-sm tracking-widest"
+            href="#venue" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Venue</a>
+        <a class="p-4 text-center font-semibold text-brand-maroon uppercase text-sm tracking-widest bg-brand-gold/10"
+            href="#rsvp" onclick="document.getElementById('mobile-menu').classList.add('hidden')">RSVP</a>
+    </div>
+
+    <!-- Main Content -->
+    <main>
+
+        <!-- Hero Section -->
+        <section
+            class="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-brand-maroon bg-hero-pattern bg-cover bg-center bg-no-repeat bg-fixed">
+            <div class="absolute inset-0 hero-overlay"></div>
+
+            <div class="relative z-10 text-center max-w-5xl px-4 flex flex-col items-center w-full mt-16">
+                <!-- Top Ornament -->
+                <div class="mb-8 floating text-brand-gold">
+                    <span
+                        class="material-symbols-outlined text-6xl filter drop-shadow-[0_0_12px_rgba(212,175,55,0.8)]">spa</span>
+                </div>
+
+                <h2
+                    class="text-brand-goldlight text-xl md:text-2xl mb-4 font-cinzel italic tracking-[0.2em] uppercase reveal">
+                    Sreerastu Shubhamastu</h2>
+
+                <h1
+                    class="font-telugu text-5xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight text-white reveal reveal-delay-1 drop-shadow-2xl">
                     శ్రీరస్తు శుభమస్తు
                 </h1>
-<p class="text-gold-light/90 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed border-y border-gold/30 py-6">
-                    With the divine blessings of our ancestors and elders, we cordially invite you to the wedding ceremony of our beloved children.
+
+                <div class="w-24 h-1 bg-brand-gold mx-auto mb-8 reveal reveal-delay-2 rounded-full"></div>
+
+                <p
+                    class="text-brand-goldlight/90 text-lg md:text-2xl font-body max-w-3xl mx-auto leading-relaxed reveal reveal-delay-2 font-light">
+                    With the divine blessings of our ancestors and elders, we cordially invite you to the wedding
+                    ceremony of our beloved children.
                 </p>
-<div class="mt-10">
-<button onclick="document.getElementById('muhurtham').scrollIntoView({behavior: 'smooth'})" class="bg-gold hover:bg-gold-light text-primary px-10 py-4 rounded-lg text-lg font-bold transition-all transform hover:scale-105 shadow-xl">
-                        View Digital Invitation
-                    </button>
-</div>
-</div>
-<!-- Peacock Motifs at bottom -->
-<div class="absolute bottom-0 left-0 p-8 opacity-40">
-<span class="material-symbols-outlined text-gold text-[120px]">flutter_dash</span>
-</div>
-<div class="absolute bottom-0 right-0 p-8 opacity-40 scale-x-[-1]">
-<span class="material-symbols-outlined text-gold text-[120px]">flutter_dash</span>
-</div>
-</section>
-<!-- The Couple Section -->
-<section class="py-24 relative overflow-hidden bg-background-light" id="couple">
-<div class="pattern-bg absolute inset-0"></div>
-<div class="container mx-auto px-6 relative z-10">
-<div class="text-center mb-16">
-<h2 class="text-primary text-4xl font-bold mb-2">The Union of Souls</h2>
-<div class="w-24 h-1 bg-gold mx-auto"></div>
-</div>
-<div class="flex flex-col md:flex-row items-center justify-center gap-12 lg:gap-24">
-<!-- Groom -->
-<div class="text-center group">
-<div class="relative mb-6">
-<div class="w-64 h-64 rounded-full border-4 border-gold p-2 mx-auto flex items-center justify-center bg-gold/10">
-<div class="couple-medallion" aria-label="Elegant groom medallion">
-<div class="couple-ring">
-<span class="couple-symbol">M</span>
-</div>
-</div>
-</div>
-</div>
-<h3 class="text-primary text-3xl font-bold mb-2">Maniteja</h3>
-<p class="text-slate-600 italic">Son of Sri. Anand &amp; Smt. Swarupa</p>
-</div>
-<!-- Mandala Divider -->
-<div class="flex flex-col items-center">
-<div class="text-gold">
-<span class="material-symbols-outlined text-8xl">filter_vintage</span>
-</div>
-<span class="text-4xl text-primary font-bold my-4 italic">weds</span>
-</div>
-<!-- Bride -->
-<div class="text-center group">
-<div class="relative mb-6">
-<div class="w-64 h-64 rounded-full border-4 border-gold p-2 mx-auto flex items-center justify-center bg-gold/10">
-<div class="couple-medallion bride" aria-label="Elegant bride medallion">
-<div class="couple-ring">
-<span class="couple-symbol">A</span>
-</div>
-</div>
-</div>
-</div>
-<h3 class="text-primary text-3xl font-bold mb-2">Akhila</h3>
-<p class="text-slate-600 italic">Daughter of Late Sri. Laxminarayana &amp; Late Smt. Nagalaxmi</p>
-</div>
-</div>
-</div>
-</section>
-<!-- Muhurtham Details -->
-<section class="py-24 bg-primary text-white" id="muhurtham">
-<div class="container mx-auto px-6 max-w-4xl">
-<div class="border-4 border-gold/30 p-8 md:p-16 rounded-xl relative">
-<!-- Marigold decoration corners -->
-<div class="absolute -top-6 -left-6 text-gold"><span class="material-symbols-outlined text-6xl">local_florist</span></div>
-<div class="absolute -top-6 -right-6 text-gold"><span class="material-symbols-outlined text-6xl">local_florist</span></div>
-<div class="absolute -bottom-6 -left-6 text-gold"><span class="material-symbols-outlined text-6xl">local_florist</span></div>
-<div class="absolute -bottom-6 -right-6 text-gold"><span class="material-symbols-outlined text-6xl">local_florist</span></div>
-<div class="text-center">
-<h2 class="text-gold-light text-3xl font-bold mb-8 uppercase tracking-widest">Sumuhurtham</h2>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center mb-12">
-<div class="text-center border-r-0 md:border-r border-gold/20 pb-4 md:pb-0">
-<p class="text-gold-light text-sm uppercase tracking-tighter">Auspicious Date</p>
-<p class="text-3xl font-bold">7th March, 2026</p>
-</div>
-<div class="text-center border-l-0 md:border-l border-gold/20 pt-4 md:pt-0">
-<span class="material-symbols-outlined text-6xl text-gold mb-2">schedule</span>
-<p class="text-4xl font-bold">12:04 PM</p>
-<p class="text-gold-light text-sm italic">Vrushaba Lagnam</p>
-</div>
-</div>
-<div class="bg-black/20 p-6 rounded-lg">
-<p class="text-xl md:text-2xl font-medium leading-relaxed italic">
-                                "మాంగళ్యం తంతునానేన మమ జీవన హేతునా |<br/>
+
+                <div class="mt-16 reveal reveal-delay-3">
+                    <a href="#couple"
+                        class="inline-flex items-center gap-2 btn-gold px-10 py-4 rounded-full text-sm md:text-base font-bold shadow-gold-lg uppercase tracking-widest">
+                        Enter Invitation
+                        <span class="material-symbols-outlined text-lg">arrow_downward</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Bottom decorative elements -->
+            <div class="absolute bottom-0 w-full left-0 pointer-events-none">
+                <svg viewBox="0 0 1440 120" class="w-full fill-brand-cream" preserveAspectRatio="none">
+                    <path
+                        d="M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,48C1120,43,1280,53,1360,58.7L1440,64L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z">
+                    </path>
+                </svg>
+            </div>
+        </section>
+
+        <!-- The Couple Section -->
+        <section class="py-24 relative overflow-hidden bg-brand-cream" id="couple">
+            <!-- Subtle background mandala -->
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-5 pointer-events-none">
+                <span class="material-symbols-outlined text-[600px] text-brand-maroon spin-slow">filter_vintage</span>
+            </div>
+
+            <div class="container mx-auto px-4 relative z-10">
+                <div class="text-center mb-20 reveal">
+                    <h2 class="font-heading text-4xl md:text-5xl font-bold text-brand-maroon mb-4">The Union of Souls
+                    </h2>
+                    <div class="w-32 h-1 bg-gradient-to-r from-transparent via-brand-gold to-transparent mx-auto"></div>
+                </div>
+
+                <div class="flex flex-col lg:flex-row items-center justify-center gap-16 lg:gap-24 relative">
+
+                    <!-- Groom -->
+                    <div class="text-center group reveal reveal-delay-1 flex flex-col items-center w-full max-w-sm">
+                        <div class="relative mb-8">
+                            <div
+                                class="couple-card w-56 h-56 md:w-64 md:h-64 rounded-full flex items-center justify-center bg-white shadow-xl cursor-pointer">
+                                <div
+                                    class="w-[90%] h-[90%] rounded-full border border-brand-gold/40 flex items-center justify-center bg-brand-cream">
+                                    <span class="font-heading text-7xl font-bold text-gradient-gold">M</span>
+                                </div>
+                            </div>
+                            <!-- Small floating leaf decor -->
+                            <div class="absolute -bottom-4 right-4 text-brand-gold floating">
+                                <span class="material-symbols-outlined text-4xl transform rotate-45">eco</span>
+                            </div>
+                        </div>
+                        <h3 class="font-heading text-3xl md:text-4xl font-bold text-brand-maroon mb-3">Maniteja</h3>
+                        <div class="w-12 h-0.5 bg-brand-gold mx-auto mb-3"></div>
+                        <p class="text-brand-charcoal/80 font-medium">Son of</p>
+                        <p class="text-brand-charcoal text-lg">Sri. Anand & Smt. Swarupa</p>
+                    </div>
+
+                    <!-- Center Ornament -->
+                    <div class="flex flex-col items-center reveal reveal-delay-2 shrink-0">
+                        <div class="text-brand-gold mb-2">
+                            <span class="material-symbols-outlined text-5xl md:text-7xl spin-slow">brightness_5</span>
+                        </div>
+                        <span
+                            class="font-cinzel text-xl md:text-2xl text-brand-maroon font-bold italic tracking-[0.3em] uppercase">Weds</span>
+                        <div class="text-brand-gold mt-2">
+                            <span class="material-symbols-outlined text-5xl md:text-7xl spin-slow"
+                                style="animation-direction: reverse;">brightness_5</span>
+                        </div>
+                    </div>
+
+                    <!-- Bride -->
+                    <div class="text-center group reveal reveal-delay-3 flex flex-col items-center w-full max-w-sm">
+                        <div class="relative mb-8">
+                            <div
+                                class="couple-card w-56 h-56 md:w-64 md:h-64 rounded-full flex items-center justify-center bg-white shadow-xl cursor-pointer">
+                                <div
+                                    class="w-[90%] h-[90%] rounded-full border border-brand-gold/40 flex items-center justify-center bg-brand-cream">
+                                    <span class="font-heading text-7xl font-bold text-gradient-gold">A</span>
+                                </div>
+                            </div>
+                            <!-- Small floating leaf decor -->
+                            <div class="absolute -bottom-4 left-4 text-brand-gold floating"
+                                style="animation-delay: 1s;">
+                                <span
+                                    class="material-symbols-outlined text-4xl transform -rotate-45 scale-x-[-1]">eco</span>
+                            </div>
+                        </div>
+                        <h3 class="font-heading text-3xl md:text-4xl font-bold text-brand-maroon mb-3">Akhila</h3>
+                        <div class="w-12 h-0.5 bg-brand-gold mx-auto mb-3"></div>
+                        <p class="text-brand-charcoal/80 font-medium">Daughter of</p>
+                        <p class="text-brand-charcoal text-lg">Late Sri. Laxminarayana & <br>Late Smt. Nagalaxmi</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Muhurtham Section -->
+        <section class="py-24 bg-brand-maroon relative overflow-hidden" id="muhurtham">
+            <!-- Background Texture Option (Can use the same dark theme) -->
+            <div
+                class="absolute inset-0 opacity-[0.15] bg-[url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23d4af37\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] mix-blend-overlay">
+            </div>
+
+            <!-- Large Mandala Decor behind text -->
+            <div class="absolute -right-40 -bottom-40 opacity-[0.05] pointer-events-none">
+                <span class="material-symbols-outlined text-[800px] text-brand-gold spin-slow">filter_vintage</span>
+            </div>
+            <div class="absolute -left-40 -top-40 opacity-[0.05] pointer-events-none">
+                <span class="material-symbols-outlined text-[800px] text-brand-gold spin-slow"
+                    style="animation-direction: reverse;">filter_vintage</span>
+            </div>
+
+            <div class="container mx-auto px-4 max-w-5xl relative z-10">
+
+                <div
+                    class="bg-brand-cream/5 backdrop-blur-sm border border-brand-gold/30 rounded-2xl p-8 md:p-16 reveal shadow-2xl relative">
+
+                    <!-- Decorative Corners -->
+                    <div class="absolute top-4 left-4 border-t-2 border-l-2 border-brand-gold w-12 h-12"></div>
+                    <div class="absolute top-4 right-4 border-t-2 border-r-2 border-brand-gold w-12 h-12"></div>
+                    <div class="absolute bottom-4 left-4 border-b-2 border-l-2 border-brand-gold w-12 h-12"></div>
+                    <div class="absolute bottom-4 right-4 border-b-2 border-r-2 border-brand-gold w-12 h-12"></div>
+
+                    <div class="text-center">
+                        <div class="mb-6 inline-block">
+                            <span class="material-symbols-outlined text-brand-gold text-5xl">celebration</span>
+                        </div>
+                        <h2
+                            class="font-heading text-brand-goldlight text-3xl md:text-5xl font-bold mb-10 uppercase tracking-[0.15em]">
+                            Sumuhurtham</h2>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-0 mt-8 mb-16 relative">
+                            <!-- Desktop vertical divider -->
+                            <div
+                                class="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-brand-gold/50 to-transparent -translate-x-1/2">
+                            </div>
+
+                            <div class="text-center px-4 reveal reveal-delay-1">
+                                <span
+                                    class="material-symbols-outlined text-brand-gold text-4xl mb-3">calendar_month</span>
+                                <p class="text-brand-goldlight/70 text-sm uppercase tracking-[0.2em] font-bold mb-2">
+                                    Auspicious Date</p>
+                                <p class="font-heading text-brand-cream text-3xl md:text-4xl font-bold tracking-wide">
+                                    7th March, 2026</p>
+                            </div>
+
+                            <div class="text-center px-4 reveal reveal-delay-2">
+                                <span class="material-symbols-outlined text-brand-gold text-4xl mb-3">schedule</span>
+                                <p class="text-brand-goldlight/70 text-sm uppercase tracking-[0.2em] font-bold mb-2">
+                                    Time</p>
+                                <p class="font-heading text-brand-cream text-3xl md:text-4xl font-bold tracking-wide">
+                                    12:04 PM</p>
+                                <p class="text-brand-gold font-medium mt-2 italic font-cinzel tracking-wider">Vrushaba
+                                    Lagnam</p>
+                            </div>
+                        </div>
+
+                        <div class="divider"></div>
+
+                        <div
+                            class="mt-12 bg-black/30 p-8 rounded-xl border border-brand-gold/20 inline-block reveal reveal-delay-3 box-shadow-gold relative overflow-hidden">
+                            <!-- Shimmer effect inside box -->
+                            <div
+                                class="absolute top-0 -inset-full h-full w-1/2 z-5 block transform -skew-x-12 bg-gradient-to-r from-transparent to-white opacity-5 animate-[shimmer_3s_infinite]">
+                            </div>
+
+                            <p class="font-telugu text-xl md:text-2xl text-brand-goldlight leading-relaxed font-bold">
+                                "మాంగళ్యం తంతునానేన మమ జీవన హేతునా |<br />
                                 కంఠే బధ్నామి శుభగే త్వం జీవ శరదశ్శతమ్ ||"
                             </p>
-</div>
-</div>
-</div>
-</div>
-</section>
-<!-- Venue Section -->
-<section class="py-24 bg-background-light" id="venue">
-<div class="container mx-auto px-6">
-<div class="flex flex-col lg:flex-row gap-12 items-center">
-<div class="flex-1 space-y-6">
-<div class="flex items-center gap-3 text-primary">
-<span class="material-symbols-outlined text-4xl">location_on</span>
-<h2 class="text-4xl font-bold">The Venue</h2>
-</div>
-<div class="space-y-4">
-<h3 class="text-2xl font-bold text-slate-800">Sri Rajyalakshmi Gardens</h3>
-<p class="text-lg text-slate-600 leading-relaxed">
-                                Godavarikhani,<br/>
-                                శ్రీ రాజ్యలక్ష్మి గార్డెన్స్ - గోదావరిఖని
-                            </p>
-<p class="text-primary font-semibold flex items-center gap-2">
-<span class="material-symbols-outlined">directions_car</span>
-                                Parking available at the entrance
-                            </p>
-</div>
-<a class="inline-flex items-center gap-2 bg-primary text-white px-8 py-3 rounded-lg font-bold shadow-lg hover:bg-primary/90 transition-all" href="https://www.google.com/maps/search/Sri+Rajyalakshmi+Gardens+Godavarikhani" target="_blank">
-                            View on Google Maps
-                            <span class="material-symbols-outlined">open_in_new</span>
-</a>
-</div>
-<div class="flex-1 w-full h-[400px] rounded-xl overflow-hidden border-8 border-white shadow-2xl relative">
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3789.823384865762!2d79.10284!3d18.73456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a3d7d1234567890%3A0x1234567890abcdef!2sGodavarikhani%2C%20Telangana!5e0!3m2!1sen!2sin!4v1234567890" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-</div>
-</div>
-</div>
-</section>
-<!-- Formal Invitation Paragraph -->
-<section class="py-24 bg-white relative" id="rsvp">
-<div class="max-w-3xl mx-auto px-6 text-center">
-<div class="mb-10 text-gold">
-<span class="material-symbols-outlined text-5xl">mail</span>
-</div>
-<div class="border-x-2 border-primary/10 px-8 py-4">
-<h2 class="text-3xl font-bold text-primary mb-8">ఆహ్వానం</h2>
-<p class="text-xl leading-loose text-slate-700 font-display">
-                        మా కుమారుడు చి|| మణితేజ మరియు కుమారి చి||ల||సౌ|| అఖిల వివాహ మహోత్సవమునకు 
-                        తమరు సకుటుంబ సపరివార సమేతముగా విచ్చేసి నూతన వధూవరులను ఆశీర్వదించవలసిందిగా కోరుచున్నాము.
-                    </p>
-<p class="mt-8 text-lg font-bold text-slate-900">
-                        తమరాగమనమును కోరువారలు:<br/>
-                        శ్రీ మరియు శ్రీమతి కల్వల కుటుంబ సభ్యులు
-                    </p>
-</div>
-<div class="mt-16 bg-background-light p-10 rounded-2xl border border-primary/10">
-<h3 class="text-2xl font-bold text-primary mb-6">RSVP</h3>
-<p class="mb-8 text-slate-600">Please let us know if you can join us in person or virtually</p>
-<div class="flex flex-wrap justify-center gap-4">
-<button onclick="showThankYou('attending')" class="bg-primary text-white px-8 py-3 rounded-lg font-bold flex items-center gap-2 hover:bg-primary/90 transition-all">
-<span class="material-symbols-outlined text-sm">check_circle</span>
-                            Attending
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Venue Section -->
+        <section class="py-24 bg-brand-cream/80 relative" id="venue">
+            <div class="container mx-auto px-4 max-w-6xl">
+
+                <div class="text-center mb-16 reveal">
+                    <h2 class="font-heading text-4xl md:text-5xl font-bold text-brand-maroon mb-4">The Venue</h2>
+                    <div class="w-32 h-1 bg-gradient-to-r from-transparent via-brand-gold to-transparent mx-auto"></div>
+                </div>
+
+                <div class="flex flex-col lg:flex-row gap-12 lg:gap-16 items-center">
+
+                    <div class="flex-1 space-y-8 reveal reveal-delay-1 order-2 lg:order-1">
+                        <div
+                            class="bg-white p-8 rounded-2xl shadow-xl border border-brand-gold/10 relative overflow-hidden group">
+
+                            <!-- Accent -->
+                            <div
+                                class="absolute top-0 left-0 w-2 h-full bg-brand-gold transition-all duration-300 group-hover:w-full group-hover:opacity-5">
+                            </div>
+
+                            <div class="relative z-10">
+                                <h3 class="font-heading text-3xl font-bold text-brand-charcoal mb-4">Sri Rajyalakshmi
+                                    Gardens</h3>
+
+                                <div class="space-y-4 mb-8">
+                                    <div class="flex items-start gap-4 text-brand-charcoal/80">
+                                        <span
+                                            class="material-symbols-outlined text-brand-maroon mt-1">location_on</span>
+                                        <div>
+                                            <p class="text-lg leading-relaxed font-medium">Godavarikhani</p>
+                                            <p class="font-telugu text-lg leading-relaxed">శ్రీ రాజ్యలక్ష్మి గార్డెన్స్
+                                                - గోదావరిఖని</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex items-center gap-4 text-brand-charcoal/80">
+                                        <span class="material-symbols-outlined text-brand-maroon">local_parking</span>
+                                        <p class="font-medium">Ample parking available at the venue</p>
+                                    </div>
+                                </div>
+
+                                <a class="inline-flex items-center gap-3 btn-maroon px-8 py-3.5 rounded-full font-bold shadow-lg uppercase tracking-wide text-sm"
+                                    href="https://www.google.com/maps/search/Sri+Rajyalakshmi+Gardens+Godavarikhani"
+                                    target="_blank" rel="noopener noreferrer">
+                                    Get Directions
+                                    <span class="material-symbols-outlined text-[20px]">directions</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div
+                        class="flex-1 w-full h-[450px] rounded-2xl overflow-hidden shadow-2xl reveal reveal-delay-2 p-2 bg-white border border-brand-gold/20 order-1 lg:order-2 group">
+                        <div class="w-full h-full rounded-xl overflow-hidden relative">
+                            <!-- Loading placeholder -->
+                            <div
+                                class="absolute inset-0 bg-brand-cream animate-pulse flex items-center justify-center text-brand-gold">
+                                <span class="material-symbols-outlined text-4xl spin-slow">autorenew</span>
+                            </div>
+                            <iframe
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3789.823384865762!2d79.10284!3d18.73456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a3d7d1234567890%3A0x1234567890abcdef!2sGodavarikhani%2C%20Telangana!5e0!3m2!1sen!2sin!4v1234567890"
+                                class="absolute inset-0 w-full h-full rounded-xl grayscale-[20%] transition-all duration-500 group-hover:grayscale-0"
+                                style="border:0;" allowfullscreen="" loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Formal Invitation & RSVP Sector -->
+        <section class="py-24 relative overflow-hidden" id="rsvp">
+            <!-- Background to blend cream and maroon -->
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent to-[#f4f1ea] -z-10"></div>
+
+            <div class="max-w-4xl mx-auto px-4 text-center">
+
+                <!-- Formal Invitation -->
+                <div class="reveal mb-20">
+                    <div
+                        class="mb-10 inline-flex items-center justify-center w-20 h-20 rounded-full bg-brand-gold/10 text-brand-gold">
+                        <span class="material-symbols-outlined text-5xl">auto_awesome</span>
+                    </div>
+
+                    <div class="px-8 py-10 relative">
+                        <!-- Custom border brackets -->
+                        <div class="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-brand-gold"></div>
+                        <div class="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-brand-gold"></div>
+                        <div class="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-brand-gold"></div>
+                        <div class="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-brand-gold"></div>
+
+                        <h2 class="font-telugu text-4xl font-bold text-brand-maroon mb-10 tracking-wide">ఆహ్వానం</h2>
+
+                        <p
+                            class="font-telugu text-xl md:text-2xl leading-[2] text-brand-charcoal font-medium max-w-3xl mx-auto">
+                            మా కుమారుడు <span class="text-brand-maroon font-bold text-2xl">చి|| మణితేజ</span> మరియు
+                            కుమారి <span class="text-brand-maroon font-bold text-2xl">చి||ల||సౌ|| అఖిల</span> వివాహ
+                            మహోత్సవమునకు
+                            తమరు సకుటుంబ సపరివార సమేతముగా విచ్చేసి నూతన వధూవరులను ఆశీర్వదించవలసిందిగా కోరుచున్నాము.
+                        </p>
+
+                        <div class="mt-12 pt-8 border-t border-brand-gold/30 inline-block">
+                            <p class="text-lg format-telugu text-brand-charcoal/80 mb-2">తమరాగమనమును కోరువారలు:</p>
+                            <p class="font-telugu text-2xl font-bold text-brand-maroon">శ్రీ మరియు శ్రీమతి కల్వల కుటుంబ
+                                సభ్యులు</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RSVP Card -->
+                <div
+                    class="bg-white p-10 md:p-14 rounded-3xl shadow-2xl border border-brand-gold/20 relative overflow-hidden reveal reveal-delay-1 mt-10">
+                    <div class="absolute -top-24 -right-24 text-brand-gold/5 w-64 h-64 pointer-events-none">
+                        <span class="material-symbols-outlined text-[256px]">mail</span>
+                    </div>
+
+                    <h3 class="font-heading text-4xl font-bold text-brand-maroon mb-4 relative z-10">Will you be joining
+                        us?</h3>
+                    <p class="text-brand-charcoal/70 mb-10 text-lg max-w-lg mx-auto relative z-10 font-medium">We would
+                        be honored to have you celebrate our special day with us. Please kindly RSVP.</p>
+
+                    <div class="flex flex-col sm:flex-row justify-center gap-6 relative z-10">
+                        <button onclick="showThankYou('attending')"
+                            class="btn-gold px-10 py-4 rounded-full font-bold flex items-center justify-center gap-3 shadow-gold-lg uppercase tracking-wider text-sm">
+                            <span class="material-symbols-outlined text-[20px]">favorite</span>
+                            Joyfully Accept
                         </button>
-<button onclick="showThankYou('notattending')" class="border-2 border-primary text-primary px-8 py-3 rounded-lg font-bold flex items-center gap-2 hover:bg-primary/5 transition-all">
-<span class="material-symbols-outlined text-sm">cancel</span>
-                            Not Attending
+                        <button onclick="showThankYou('notattending')"
+                            class="bg-white border-2 border-brand-maroon text-brand-maroon px-10 py-4 rounded-full font-bold flex items-center justify-center gap-3 hover:bg-brand-maroon hover:text-white transition-all duration-300 uppercase tracking-wider text-sm">
+                            <span class="material-symbols-outlined text-[20px]">close</span>
+                            Regretfully Decline
                         </button>
-</div>
-<!-- Thank You Modal -->
-<div id="thankYouModal" class="hidden fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-<div class="bg-white rounded-2xl p-8 max-w-md text-center animate-bounce shadow-2xl">
-<div class="text-gold mb-4">
-<span class="material-symbols-outlined text-6xl">favorite</span>
-</div>
-<h3 class="text-2xl font-bold text-primary mb-4">Thank You!</h3>
-<p id="thankYouMessage" class="text-slate-600 mb-6 text-lg">Your response has been recorded. We look forward to celebrating with you!</p>
-<button onclick="closeThankYou()" class="bg-primary text-white px-8 py-3 rounded-lg font-bold hover:bg-primary/90 transition-all">
-                            Close
-                        </button>
-</div>
-</div>
-<script>
-function showThankYou(response) {
-const modal = document.getElementById('thankYouModal');
-const message = document.getElementById('thankYouMessage');
-if (response === 'attending') {
-message.textContent = 'Thank you for confirming your attendance! We look forward to celebrating with you!';
-} else {
-message.textContent = 'Thank you for your response. We\'ll miss you, but we appreciate you letting us know!';
-}
-modal.classList.remove('hidden');
-setTimeout(closeThankYou, 3000);
-}
-function closeThankYou() {
-document.getElementById('thankYouModal').classList.add('hidden');
-}
-function showJoinThankYou() {
-const modal = document.getElementById('thankYouModal');
-const message = document.getElementById('thankYouMessage');
-message.textContent = 'Thank you for joining our celebration! We\'re thrilled to have you with us!';
-modal.classList.remove('hidden');
-setTimeout(closeThankYou, 3000);
-}
+                    </div>
+                </div>
+            </div>
 
-(function startFlowerEffect() {
-const overlay = document.getElementById('flowerOverlay');
-if (!overlay) {
-return;
-}
+            <!-- Thank You Modal -->
+            <div id="thankYouModal"
+                class="hidden fixed inset-0 bg-brand-charcoal/80 backdrop-blur-sm flex items-center justify-center z-[100] p-4 opacity-0 transition-opacity duration-300">
+                <div class="bg-white rounded-3xl p-10 max-w-lg w-full text-center shadow-2xl transform scale-95 transition-transform duration-300 relative border-4 border-brand-gold/20"
+                    id="modalContent">
 
-const petalColors = ['#f9e29d', '#d4af37', '#fce7f3', '#fecdd3'];
-const petalCount = 38;
+                    <!-- Close button -->
+                    <button onclick="closeThankYou()"
+                        class="absolute top-4 right-4 text-brand-charcoal/50 hover:text-brand-maroon transition-colors">
+                        <span class="material-symbols-outlined text-3xl">close</span>
+                    </button>
 
-for (let i = 0; i < petalCount; i++) {
-const petal = document.createElement('span');
-petal.className = 'flower-petal';
+                    <div class="w-20 h-20 bg-brand-gold/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <span class="material-symbols-outlined text-5xl text-brand-gold">check_circle</span>
+                    </div>
 
-const width = Math.floor(Math.random() * 10) + 9;
-const height = Math.floor(Math.random() * 8) + 7;
-const left = Math.random() * 100;
-const duration = Math.random() * 8 + 10;
-const delay = Math.random() * -duration;
-const drift = (Math.random() * 220 - 110).toFixed(1);
-const opacity = (Math.random() * 0.45 + 0.45).toFixed(2);
+                    <h3 class="font-heading text-3xl font-bold text-brand-maroon mb-4">Thank You!</h3>
+                    <div class="w-16 h-1 bg-brand-gold mx-auto mb-6"></div>
+                    <p id="thankYouMessage" class="text-brand-charcoal text-lg font-medium leading-relaxed mb-8">Your
+                        response has been recorded. We look forward to celebrating with you!</p>
 
-petal.style.width = `${width}px`;
-petal.style.height = `${height}px`;
-petal.style.left = `${left}%`;
-petal.style.background = petalColors[i % petalColors.length];
-petal.style.animationDuration = `${duration}s`;
-petal.style.animationDelay = `${delay}s`;
-petal.style.setProperty('--drift', `${drift}px`);
-petal.style.opacity = opacity;
-petal.style.transform = `rotate(${Math.random() * 360}deg)`;
+                    <button onclick="closeThankYou()"
+                        class="btn-maroon px-10 py-3 rounded-full font-bold shadow-lg uppercase tracking-widest text-sm w-full">
+                        Close
+                    </button>
+                </div>
+            </div>
 
-overlay.appendChild(petal);
-}
-})();
-</script>
-</div>
-</div>
-</section>
-</main>
-<!-- Footer -->
-<footer class="bg-primary text-gold-light py-12 border-t-4 border-gold">
-<div class="container mx-auto px-6 text-center">
-<div class="mb-6 flex justify-center gap-4">
-<span class="material-symbols-outlined">favorite</span>
-<span class="material-symbols-outlined">auto_awesome</span>
-<span class="material-symbols-outlined">favorite</span>
-</div>
-<p class="text-sm uppercase tracking-[0.3em] font-bold">Maniteja &amp; Akhila</p>
-<p class="mt-4 text-xs opacity-60">With love, as they step into their forever</p>
-</div>
-</footer>
-</body></html>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-brand-maroon text-brand-cream py-16 relative border-t-[8px] border-brand-gold">
+        <div class="container mx-auto px-6 text-center">
+            <div class="mb-8 flex justify-center gap-6 text-brand-gold">
+                <span class="material-symbols-outlined text-2xl">eco</span>
+                <span class="material-symbols-outlined text-3xl">favorite</span>
+                <span class="material-symbols-outlined text-2xl transform scale-x-[-1]">eco</span>
+            </div>
+
+            <h2
+                class="font-heading text-4xl md:text-5xl font-bold mb-6 text-transparent bg-clip-text text-gradient-gold">
+                Maniteja & Akhila
+            </h2>
+
+            <p class="font-cinzel text-sm uppercase tracking-[0.4em] font-semibold text-brand-goldlight mb-12">
+                Beginning of Forever
+            </p>
+
+            <div class="w-24 h-px bg-brand-gold/30 mx-auto mb-8"></div>
+
+            <p class="text-xs text-brand-cream/60 font-medium uppercase tracking-widest">
+                With love, Kalvala Family
+            </p>
+        </div>
+    </footer>
+
+    <!-- Interactive Scripts -->
+    <script>
+        // RSVP Modal Logic
+        function showThankYou(response) {
+            const modal = document.getElementById('thankYouModal');
+            const modalContent = document.getElementById('modalContent');
+            const message = document.getElementById('thankYouMessage');
+
+            if (response === 'attending') {
+                message.innerHTML = 'Thank you for accepting! <br><span class="text-brand-gold mt-2 block font-bold">We can\'t wait to celebrate with you!</span>';
+            } else {
+                message.innerHTML = 'Thank you for letting us know.<br><span class="text-brand-maroon mt-2 block ">You will be warmly remembered on our special day.</span>';
+            }
+
+            modal.classList.remove('hidden');
+            // Trigger animation frame for transition
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                modal.classList.add('opacity-100');
+                modalContent.classList.remove('scale-95');
+                modalContent.classList.add('scale-100');
+            }, 10);
+        }
+
+        function closeThankYou() {
+            const modal = document.getElementById('thankYouModal');
+            const modalContent = document.getElementById('modalContent');
+
+            modal.classList.remove('opacity-100');
+            modal.classList.add('opacity-0');
+            modalContent.classList.remove('scale-100');
+            modalContent.classList.add('scale-95');
+
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300); // Wait for transition
+        }
+
+        // Scroll animations using Intersection Observer
+        document.addEventListener('DOMContentLoaded', () => {
+            const reveals = document.querySelectorAll('.reveal');
+
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        // Optional: stop observing once revealed
+                        // observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                root: null,
+                threshold: 0.15, // Trigger when 15% visible
+                rootMargin: "0px 0px -50px 0px"
+            });
+
+            reveals.forEach(reveal => {
+                revealObserver.observe(reveal);
+            });
+
+            // Sticky Navigation Style adjustment on scroll
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('nav-scrolled');
+                } else {
+                    navbar.classList.remove('nav-scrolled');
+                }
+            });
+
+            // Trigger initial scroll to reveal elements already in view
+            window.dispatchEvent(new Event('scroll'));
+        });
+    </script>
+</body>
+
+</html>
