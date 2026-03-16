@@ -253,28 +253,6 @@
             margin: 2rem auto;
             width: 60%;
         }
-
-        /* Upgraded RSVP Section Background */
-        .rsvp-bg {
-            background:
-                linear-gradient(160deg, #3d0010 0%, #5c0016 30%, #7a1a30 55%, #b38728 85%, #d4af37 100%);
-        }
-
-        .rsvp-section {
-            color: #fdfbf7;
-        }
-
-        .rsvp-section .text-brand-charcoal {
-            color: #fdfbf7 !important;
-        }
-
-        .rsvp-section .text-brand-charcoal\/70 {
-            color: rgba(253,251,247,0.75) !important;
-        }
-
-        .rsvp-section .text-brand-charcoal\/80 {
-            color: rgba(253,251,247,0.85) !important;
-        }
     </style>
 </head>
 
@@ -602,37 +580,9 @@
         </section>
 
         <!-- Formal Invitation & RSVP Sector -->
-        <section class="py-24 relative overflow-hidden rsvp-section" id="rsvp">
-            <!-- Upgraded multi-layer royal background -->
-            <div class="absolute inset-0 -z-20 rsvp-bg"></div>
-            <!-- Decorative mandala SVG watermark -->
-            <div class="absolute inset-0 -z-10 pointer-events-none flex items-center justify-center opacity-[0.04]">
-                <svg viewBox="0 0 400 400" width="700" height="700" xmlns="http://www.w3.org/2000/svg">
-                    <g fill="none" stroke="#d4af37" stroke-width="1.5">
-                        <circle cx="200" cy="200" r="190"/>
-                        <circle cx="200" cy="200" r="160"/>
-                        <circle cx="200" cy="200" r="130"/>
-                        <circle cx="200" cy="200" r="100"/>
-                        <circle cx="200" cy="200" r="70"/>
-                        <circle cx="200" cy="200" r="40"/>
-                        <!-- petals -->
-                        <g transform="translate(200,200)">
-                            <ellipse rx="18" ry="85" transform="rotate(0)"/>
-                            <ellipse rx="18" ry="85" transform="rotate(30)"/>
-                            <ellipse rx="18" ry="85" transform="rotate(60)"/>
-                            <ellipse rx="18" ry="85" transform="rotate(90)"/>
-                            <ellipse rx="18" ry="85" transform="rotate(120)"/>
-                            <ellipse rx="18" ry="85" transform="rotate(150)"/>
-                            <ellipse rx="10" ry="55" transform="rotate(15)"/>
-                            <ellipse rx="10" ry="55" transform="rotate(45)"/>
-                            <ellipse rx="10" ry="55" transform="rotate(75)"/>
-                            <ellipse rx="10" ry="55" transform="rotate(105)"/>
-                            <ellipse rx="10" ry="55" transform="rotate(135)"/>
-                            <ellipse rx="10" ry="55" transform="rotate(165)"/>
-                        </g>
-                    </g>
-                </svg>
-            </div>
+        <section class="py-24 relative overflow-hidden" id="rsvp">
+            <!-- Background to blend cream and maroon -->
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent to-[#f4f1ea] -z-10"></div>
 
             <div class="max-w-4xl mx-auto px-4 text-center">
 
@@ -668,9 +618,9 @@
                     </div>
                 </div>
 
-                <!-- RSVP Form Card -->
+                <!-- RSVP Card -->
                 <div
-                    class="bg-white/95 backdrop-blur-sm p-10 md:p-14 rounded-3xl shadow-2xl border border-brand-gold/30 relative overflow-hidden reveal reveal-delay-1 mt-10">
+                    class="bg-white p-10 md:p-14 rounded-3xl shadow-2xl border border-brand-gold/20 relative overflow-hidden reveal reveal-delay-1 mt-10">
                     <div class="absolute -top-24 -right-24 text-brand-gold/5 w-64 h-64 pointer-events-none">
                         <span class="material-symbols-outlined text-[256px]">mail</span>
                     </div>
@@ -680,82 +630,18 @@
                     <p class="text-brand-charcoal/70 mb-10 text-lg max-w-lg mx-auto relative z-10 font-medium">We would
                         be honored to have you celebrate our special day with us. Please kindly RSVP.</p>
 
-                    <!-- RSVP Form -->
-                    <form id="rsvpForm" class="max-w-md mx-auto text-left relative z-10" novalidate>
-                        <!-- Name -->
-                        <div class="mb-6">
-                            <label for="rsvpName" class="block text-sm font-bold uppercase tracking-wider text-brand-maroon mb-2">
-                                Full Name <span class="text-red-500">*</span>
-                            </label>
-                            <input type="text" id="rsvpName" name="name" required
-                                placeholder="Your full name"
-                                class="w-full px-5 py-3 rounded-xl border-2 border-brand-gold/40 focus:border-brand-gold focus:outline-none text-brand-charcoal bg-brand-cream/60 font-medium transition-colors duration-200" />
-                            <p id="nameError" class="text-red-500 text-xs mt-1 hidden">Please enter your name.</p>
-                        </div>
-
-                        <!-- Phone -->
-                        <div class="mb-6">
-                            <label for="rsvpPhone" class="block text-sm font-bold uppercase tracking-wider text-brand-maroon mb-2">
-                                Phone Number
-                            </label>
-                            <input type="tel" id="rsvpPhone" name="phone"
-                                placeholder="+91 98765 43210"
-                                class="w-full px-5 py-3 rounded-xl border-2 border-brand-gold/40 focus:border-brand-gold focus:outline-none text-brand-charcoal bg-brand-cream/60 font-medium transition-colors duration-200" />
-                        </div>
-
-                        <!-- Attending -->
-                        <div class="mb-6">
-                            <span class="block text-sm font-bold uppercase tracking-wider text-brand-maroon mb-3">
-                                Will you attend? <span class="text-red-500">*</span>
-                            </span>
-                            <div class="flex gap-4">
-                                <label class="flex items-center gap-2 cursor-pointer rsvp-choice-label">
-                                    <input type="radio" name="attending" value="yes" required
-                                        class="accent-brand-maroon w-4 h-4" id="attendYes" />
-                                    <span class="font-semibold text-brand-charcoal flex items-center gap-1">
-                                        <span class="material-symbols-outlined text-brand-gold text-[18px]">favorite</span>
-                                        Joyfully Accept
-                                    </span>
-                                </label>
-                                <label class="flex items-center gap-2 cursor-pointer rsvp-choice-label">
-                                    <input type="radio" name="attending" value="no"
-                                        class="accent-brand-maroon w-4 h-4" id="attendNo" />
-                                    <span class="font-semibold text-brand-charcoal flex items-center gap-1">
-                                        <span class="material-symbols-outlined text-brand-charcoal/40 text-[18px]">close</span>
-                                        Regretfully Decline
-                                    </span>
-                                </label>
-                            </div>
-                            <p id="attendingError" class="text-red-500 text-xs mt-1 hidden">Please select an option.</p>
-                        </div>
-
-                        <!-- Number of Guests (shown only when attending) -->
-                        <div class="mb-6" id="guestsField">
-                            <label for="rsvpGuests" class="block text-sm font-bold uppercase tracking-wider text-brand-maroon mb-2">
-                                Number of Guests (including yourself)
-                            </label>
-                            <input type="number" id="rsvpGuests" name="num_guests" min="1" max="10" value="1"
-                                class="w-full px-5 py-3 rounded-xl border-2 border-brand-gold/40 focus:border-brand-gold focus:outline-none text-brand-charcoal bg-brand-cream/60 font-medium transition-colors duration-200" />
-                        </div>
-
-                        <!-- Optional message -->
-                        <div class="mb-8">
-                            <label for="rsvpMessage" class="block text-sm font-bold uppercase tracking-wider text-brand-maroon mb-2">
-                                Message (optional)
-                            </label>
-                            <textarea id="rsvpMessage" name="message" rows="3"
-                                placeholder="Share a warm wish for the couple…"
-                                class="w-full px-5 py-3 rounded-xl border-2 border-brand-gold/40 focus:border-brand-gold focus:outline-none text-brand-charcoal bg-brand-cream/60 font-medium transition-colors duration-200 resize-none"></textarea>
-                        </div>
-
-                        <!-- Submit -->
-                        <button type="submit" id="rsvpSubmitBtn"
-                            class="btn-gold w-full py-4 rounded-full font-bold flex items-center justify-center gap-3 shadow-gold-lg uppercase tracking-wider text-sm">
-                            <span class="material-symbols-outlined text-[20px]" id="rsvpBtnIcon">send</span>
-                            <span id="rsvpBtnText">Send RSVP</span>
+                    <div class="flex flex-col sm:flex-row justify-center gap-6 relative z-10">
+                        <button onclick="showThankYou('attending')"
+                            class="btn-gold px-10 py-4 rounded-full font-bold flex items-center justify-center gap-3 shadow-gold-lg uppercase tracking-wider text-sm">
+                            <span class="material-symbols-outlined text-[20px]">favorite</span>
+                            Joyfully Accept
                         </button>
-                        <p id="rsvpFormError" class="text-red-500 text-sm text-center mt-4 hidden">Something went wrong. Please try again.</p>
-                    </form>
+                        <button onclick="showThankYou('notattending')"
+                            class="bg-white border-2 border-brand-maroon text-brand-maroon px-10 py-4 rounded-full font-bold flex items-center justify-center gap-3 hover:bg-brand-maroon hover:text-white transition-all duration-300 uppercase tracking-wider text-sm">
+                            <span class="material-symbols-outlined text-[20px]">close</span>
+                            Regretfully Decline
+                        </button>
+                    </div>
                 </div>
             </div>
 
@@ -818,106 +704,20 @@
 
     <!-- Interactive Scripts -->
     <script>
-        // RSVP Form Logic
-        (function () {
-            const form = document.getElementById('rsvpForm');
-            const guestsField = document.getElementById('guestsField');
-            const attendYes = document.getElementById('attendYes');
-            const attendNo = document.getElementById('attendNo');
-
-            // Toggle guests field based on attending choice
-            function updateGuestsVisibility() {
-                if (attendYes.checked) {
-                    guestsField.style.display = '';
-                } else {
-                    guestsField.style.display = 'none';
-                }
-            }
-            attendYes.addEventListener('change', updateGuestsVisibility);
-            attendNo.addEventListener('change', updateGuestsVisibility);
-            updateGuestsVisibility();
-
-            form.addEventListener('submit', async function (e) {
-                e.preventDefault();
-
-                // Clear previous errors
-                document.getElementById('nameError').classList.add('hidden');
-                document.getElementById('attendingError').classList.add('hidden');
-                document.getElementById('rsvpFormError').classList.add('hidden');
-
-                const name = document.getElementById('rsvpName').value.trim();
-                const phone = document.getElementById('rsvpPhone').value.trim();
-                const attendingRadio = form.querySelector('input[name="attending"]:checked');
-                const numGuests = parseInt(document.getElementById('rsvpGuests').value, 10) || 1;
-                const message = document.getElementById('rsvpMessage').value.trim();
-
-                let valid = true;
-                if (!name) {
-                    document.getElementById('nameError').classList.remove('hidden');
-                    valid = false;
-                }
-                if (!attendingRadio) {
-                    document.getElementById('attendingError').classList.remove('hidden');
-                    valid = false;
-                }
-                if (!valid) return;
-
-                const attending = attendingRadio.value === 'yes';
-
-                // Show loading state
-                const btn = document.getElementById('rsvpSubmitBtn');
-                const btnText = document.getElementById('rsvpBtnText');
-                const btnIcon = document.getElementById('rsvpBtnIcon');
-                btn.disabled = true;
-                btnText.textContent = 'Sending…';
-                btnIcon.textContent = 'hourglass_empty';
-
-                try {
-                    const res = await fetch('/api/rsvp', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({
-                            name,
-                            phone: phone || null,
-                            attending,
-                            num_guests: attending ? numGuests : 0,
-                            message: message || null,
-                        }),
-                    });
-
-                    if (res.ok) {
-                        showThankYou(attending ? 'attending' : 'notattending', name);
-                        form.reset();
-                        updateGuestsVisibility();
-                    } else {
-                        const data = await res.json().catch(() => ({}));
-                        document.getElementById('rsvpFormError').textContent =
-                            data.error || 'Something went wrong. Please try again.';
-                        document.getElementById('rsvpFormError').classList.remove('hidden');
-                    }
-                } catch {
-                    document.getElementById('rsvpFormError').classList.remove('hidden');
-                } finally {
-                    btn.disabled = false;
-                    btnText.textContent = 'Send RSVP';
-                    btnIcon.textContent = 'send';
-                }
-            });
-        })();
-
-        function showThankYou(response, name) {
+        // RSVP Modal Logic
+        function showThankYou(response) {
             const modal = document.getElementById('thankYouModal');
             const modalContent = document.getElementById('modalContent');
             const message = document.getElementById('thankYouMessage');
-            const greeting = name ? `Dear ${name}, ` : '';
 
             if (response === 'attending') {
-                message.innerHTML = `${greeting}Thank you for accepting! <br><span class="text-brand-gold mt-2 block font-bold">We can't wait to celebrate with you!</span>`;
+                message.innerHTML = 'Thank you for accepting! <br><span class="text-brand-gold mt-2 block font-bold">We can\'t wait to celebrate with you!</span>';
             } else {
-                message.innerHTML = `${greeting}Thank you for letting us know.<br><span class="text-brand-maroon mt-2 block">You will be warmly remembered on our special day.</span>`;
+                message.innerHTML = 'Thank you for letting us know.<br><span class="text-brand-maroon mt-2 block ">You will be warmly remembered on our special day.</span>';
             }
 
             modal.classList.remove('hidden');
+            // Trigger animation frame for transition
             setTimeout(() => {
                 modal.classList.remove('opacity-0');
                 modal.classList.add('opacity-100');
@@ -937,7 +737,7 @@
 
             setTimeout(() => {
                 modal.classList.add('hidden');
-            }, 300);
+            }, 300); // Wait for transition
         }
 
         // Scroll animations using Intersection Observer
@@ -948,11 +748,13 @@
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('active');
+                        // Optional: stop observing once revealed
+                        // observer.unobserve(entry.target);
                     }
                 });
             }, {
                 root: null,
-                threshold: 0.15,
+                threshold: 0.15, // Trigger when 15% visible
                 rootMargin: "0px 0px -50px 0px"
             });
 
